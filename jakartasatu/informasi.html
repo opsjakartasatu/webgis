@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://js.arcgis.com/4.29/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers" />
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
@@ -18,6 +19,17 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/portal.css" />
+
+    <style>
+      th {
+        cursor: pointer;
+        position: relative;
+      }
+      .sort-icon {
+        margin-left: 5px;
+        color: gray;
+      }
+    </style>
   </head>
 
   <body class="app">
@@ -39,155 +51,18 @@
                 <i class="search-mobile-trigger-icon fa-solid fa-magnifying-glass"></i>
               </div>
               <!--//col-->
-              <div class="app-search-box col">
-                <form class="app-search-form">
-                  <input type="text" placeholder="Search..." name="search" class="form-control search-input" />
-                  <button type="submit" class="btn search-btn btn-primary" value="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
+              <div class="app-title-box col">
+                <h3 class="website-title">Title...</h3>
               </div>
               <!--//app-search-box-->
-
               <div class="app-utilities col-auto">
-                <div class="app-utility-item app-notifications-dropdown dropdown">
-                  <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" title="Notifications">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z" />
-                      <path
-                        fill-rule="evenodd"
-                        d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
-                      />
-                    </svg>
-                    <span class="icon-badge">3</span> </a
-                  ><!--//dropdown-toggle-->
-
-                  <div class="dropdown-menu p-0" aria-labelledby="notifications-dropdown-toggle">
-                    <div class="dropdown-menu-header p-3">
-                      <h5 class="dropdown-menu-title mb-0">Notifications</h5>
-                    </div>
-                    <!--//dropdown-menu-title-->
-                    <div class="dropdown-menu-content">
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <img class="profile-image" src="assets/images/profiles/profile-1.png" alt="" />
-                          </div>
-                          <!--//col-->
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">Amy shared a file with you. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                              <div class="meta">2 hrs ago</div>
-                            </div>
-                          </div>
-                          <!--//col-->
-                        </div>
-                        <!--//row-->
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <!--//item-->
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <div class="app-icon-holder">
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-receipt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z"
-                                />
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <!--//col-->
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">You have a new invoice. Proin venenatis interdum est.</div>
-                              <div class="meta">1 day ago</div>
-                            </div>
-                          </div>
-                          <!--//col-->
-                        </div>
-                        <!--//row-->
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <!--//item-->
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <div class="app-icon-holder icon-holder-mono">
-                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <!--//col-->
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">Your report is ready. Proin venenatis interdum est.</div>
-                              <div class="meta">3 days ago</div>
-                            </div>
-                          </div>
-                          <!--//col-->
-                        </div>
-                        <!--//row-->
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <!--//item-->
-                      <div class="item p-3">
-                        <div class="row gx-2 justify-content-between align-items-center">
-                          <div class="col-auto">
-                            <img class="profile-image" src="assets/images/profiles/profile-2.png" alt="" />
-                          </div>
-                          <!--//col-->
-                          <div class="col">
-                            <div class="info">
-                              <div class="desc">James sent you a new message.</div>
-                              <div class="meta">7 days ago</div>
-                            </div>
-                          </div>
-                          <!--//col-->
-                        </div>
-                        <!--//row-->
-                        <a class="link-mask" href="notifications.html"></a>
-                      </div>
-                      <!--//item-->
-                    </div>
-                    <!--//dropdown-menu-content-->
-
-                    <div class="dropdown-menu-footer p-2 text-center">
-                      <a href="notifications.html">View all</a>
-                    </div>
-                  </div>
-                  <!--//dropdown-menu-->
-                </div>
                 <!--//app-utility-item-->
-                <div class="app-utility-item">
-                  <a href="settings.html" title="Settings">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fill-rule="evenodd"
-                        d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"
-                      />
-                      <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
-                    </svg>
-                  </a>
-                </div>
-                <!--//app-utility-item-->
-
                 <div class="app-utility-item app-user-dropdown dropdown">
-                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user.png" alt="user profile" /></a>
+                  <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="assets/images/user_1.png" alt="user profile" /></a>
                   <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                    <li><a class="dropdown-item" href="account.html">Account</a></li>
-                    <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="login.html">Log Out</a></li>
+                    <li><a class="dropdown-item" href="login.html">Log In</a></li>
+                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                    <!-- <li><hr class="dropdown-divider" /></li> -->
                   </ul>
                 </div>
                 <!--//app-user-dropdown-->
@@ -201,7 +76,7 @@
         <!--//container-fluid-->
       </div>
       <!--//app-header-inner-->
-      <div id="app-sidepanel" class="app-sidepanel sidepanel-hidden">
+      <div id="app-sidepanel" class="app-sidepanel">
         <div id="sidepanel-drop" class="sidepanel-drop"></div>
         <div class="sidepanel-inner d-flex flex-column">
           <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
@@ -209,6 +84,7 @@
             <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="assets/images/jkt1.png" alt="logo" /><span class="logo-text">JAKARTA SATU</span></a>
           </div>
           <!--//app-branding-->
+
           <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
               <li class="nav-item">
@@ -223,8 +99,9 @@
                       <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                     </svg>
                   </span>
-                  <span class="nav-link-text">Beranda</span> </a
-                ><!--//nav-link-->
+                  <span class="nav-link-text">Beranda</span>
+                </a>
+                <!--//nav-link-->
               </li>
               <!--//nav-item-->
               <li class="nav-item">
@@ -336,10 +213,12 @@
                     <table class="table app-table-hover mb-0 text-left">
                       <thead>
                         <tr>
-                          <th class="cell">No</th>
-                          <th class="cell">Kelurahan</th>
-                          <th class="cell">KK Laki-Laki</th>
-                          <th class="cell"></th>
+                          <th class="cell">No <i class="fas fa-sort sort-icon" id="sortIconNo" onclick="sortTable('no')"></i></th>
+                          <th class="cell">Kelurahan <i class="fas fa-sort sort-icon" id="sortIconKelurahan" onclick="sortTable('wadmkd')"></i></th>
+                          <th class="cell">KK Laki-Laki <i class="fas fa-sort sort-icon" id="sortIconKkLakiLaki" onclick="sortTable('kk_laki_laki')"></i></th>
+                          <th class="cell">KK Perempuan <i class="fas fa-sort sort-icon" id="sortIconKkPerempuan" onclick="sortTable('kk_perempuan')"></i></th>
+                          <th class="cell">KK Laki-Laki & Perempuan <i class="fas fa-sort sort-icon" id="sortIconKkLakiPerempuan" onclick="sortTable('kk_laki_perempuan')"></i></th>
+                          <!-- <th class="cell"></th> -->
                         </tr>
                       </thead>
                       <tbody id="tableBody"></tbody>
@@ -351,159 +230,17 @@
               </div>
               <!--//app-card-->
               <nav class="app-pagination">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
+                <ul class="pagination justify-content-center" id="pagination">
+                  <li class="page-item disabled" id="prevPage">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                   </li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
+                  <!-- Page numbers will be populated here by JavaScript -->
+                  <li class="page-item" id="nextPage">
                     <a class="page-link" href="#">Next</a>
                   </li>
                 </ul>
               </nav>
               <!--//app-pagination-->
-            </div>
-            <!--//tab-pane-->
-
-            <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
-              <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                  <div class="table-responsive">
-                    <table class="table mb-0 text-left">
-                      <thead>
-                        <tr>
-                          <th class="cell">Order</th>
-                          <th class="cell">Product</th>
-                          <th class="cell">Customer</th>
-                          <th class="cell">Date</th>
-                          <th class="cell">Status</th>
-                          <th class="cell">Total</th>
-                          <th class="cell"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="cell">#15346</td>
-                          <td class="cell"><span class="truncate">Lorem ipsum dolor sit amet eget volutpat erat</span></td>
-                          <td class="cell">John Sanders</td>
-                          <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-                          <td class="cell"><span class="badge bg-success">Paid</span></td>
-                          <td class="cell">$259.35</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-
-                        <tr>
-                          <td class="cell">#15344</td>
-                          <td class="cell"><span class="truncate">Pellentesque diam imperdiet</span></td>
-                          <td class="cell">Teresa Holland</td>
-                          <td class="cell"><span class="cell-data">16 Oct</span><span class="note">01:16 AM</span></td>
-                          <td class="cell"><span class="badge bg-success">Paid</span></td>
-                          <td class="cell">$123.00</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-
-                        <tr>
-                          <td class="cell">#15343</td>
-                          <td class="cell"><span class="truncate">Vestibulum a accumsan lectus sed mollis ipsum</span></td>
-                          <td class="cell">Jayden Massey</td>
-                          <td class="cell"><span class="cell-data">15 Oct</span><span class="note">8:07 PM</span></td>
-                          <td class="cell"><span class="badge bg-success">Paid</span></td>
-                          <td class="cell">$199.00</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-
-                        <tr>
-                          <td class="cell">#15341</td>
-                          <td class="cell"><span class="truncate">Morbi vulputate lacinia neque et sollicitudin</span></td>
-                          <td class="cell">Raymond Atkins</td>
-                          <td class="cell"><span class="cell-data">11 Oct</span><span class="note">11:18 AM</span></td>
-                          <td class="cell"><span class="badge bg-success">Paid</span></td>
-                          <td class="cell">$678.26</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!--//table-responsive-->
-                </div>
-                <!--//app-card-body-->
-              </div>
-              <!--//app-card-->
-            </div>
-            <!--//tab-pane-->
-
-            <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
-              <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                  <div class="table-responsive">
-                    <table class="table mb-0 text-left">
-                      <thead>
-                        <tr>
-                          <th class="cell">Order</th>
-                          <th class="cell">Product</th>
-                          <th class="cell">Customer</th>
-                          <th class="cell">Date</th>
-                          <th class="cell">Status</th>
-                          <th class="cell">Total</th>
-                          <th class="cell"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="cell">#15345</td>
-                          <td class="cell"><span class="truncate">Consectetur adipiscing elit</span></td>
-                          <td class="cell">Dylan Ambrose</td>
-                          <td class="cell"><span class="cell-data">16 Oct</span><span class="note">03:16 AM</span></td>
-                          <td class="cell"><span class="badge bg-warning">Pending</span></td>
-                          <td class="cell">$96.20</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!--//table-responsive-->
-                </div>
-                <!--//app-card-body-->
-              </div>
-              <!--//app-card-->
-            </div>
-            <!--//tab-pane-->
-            <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
-              <div class="app-card app-card-orders-table mb-5">
-                <div class="app-card-body">
-                  <div class="table-responsive">
-                    <table class="table mb-0 text-left">
-                      <thead>
-                        <tr>
-                          <th class="cell">Order</th>
-                          <th class="cell">Product</th>
-                          <th class="cell">Customer</th>
-                          <th class="cell">Date</th>
-                          <th class="cell">Status</th>
-                          <th class="cell">Total</th>
-                          <th class="cell"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="cell">#15342</td>
-                          <td class="cell"><span class="truncate">Justo feugiat neque</span></td>
-                          <td class="cell">Reina Brooks</td>
-                          <td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
-                          <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
-                          <td class="cell">$59.00</td>
-                          <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <!--//table-responsive-->
-                </div>
-                <!--//app-card-body-->
-              </div>
-              <!--//app-card-->
             </div>
             <!--//tab-pane-->
           </div>
@@ -516,9 +253,7 @@
       <footer class="app-footer">
         <div class="container text-center py-3">
           <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-          <small class="copyright"
-            >Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small
-          >
+          <small class="copyright">Hak Cipta 2020. Pemerintah Provinsi Daerah Khusus Ibukota Jakarta. </small>
         </div>
       </footer>
       <!--//app-footer-->
@@ -531,37 +266,132 @@
           url: "https://tataruang.jakarta.go.id/server/rest/services/Hosted/Kependudukan_Jakpus/FeatureServer/0", // Ganti dengan URL layer fitur Anda
         });
 
-        featureLayer.queryFeatures().then(function (results) {
-          var features = results.features;
-          var tableBody = document.getElementById("tableBody");
+        var features = [];
+        var currentPage = 1;
+        var rowsPerPage = 10;
+        var sortOrder = { key: "", ascending: true };
 
-          features.forEach(function (feature, index) {
+        featureLayer
+          .queryFeatures()
+          .then(function (results) {
+            features = results.features;
+            displayTable(currentPage);
+            setupPagination();
+          })
+          .catch(function (error) {
+            console.error("Error querying features: ", error);
+          });
+
+        function displayTable(page) {
+          var tableBody = document.getElementById("tableBody");
+          tableBody.innerHTML = "";
+          var start = (page - 1) * rowsPerPage;
+          var end = start + rowsPerPage;
+          var paginatedFeatures = features.slice(start, end);
+
+          paginatedFeatures.forEach(function (feature, index) {
             var attributes = feature.attributes;
             var row = document.createElement("tr");
 
-            var cellOrder = document.createElement("td");
-            cellOrder.classList.add("cell");
-            cellOrder.textContent = "#" + (index + 1);
-            row.appendChild(cellOrder);
+            var cellNo = document.createElement("td");
+            cellNo.classList.add("cell");
+            cellNo.textContent = "#" + (start + index + 1);
+            row.appendChild(cellNo);
 
-            var cellProduct = document.createElement("td");
-            cellProduct.classList.add("cell");
-            cellProduct.innerHTML = "<span class='truncate'>" + attributes["wadmkd"] + "</span>"; // Ganti YOUR_PRODUCT_FIELD dengan nama field yang sesuai
-            row.appendChild(cellProduct);
+            var cellwadmkd = document.createElement("td");
+            cellwadmkd.classList.add("cell");
+            cellwadmkd.innerHTML = attributes["wadmkd"]; // Ganti YOUR_PRODUCT_FIELD dengan nama field yang sesuai
+            row.appendChild(cellwadmkd);
 
-            var cellPrice = document.createElement("td");
-            cellPrice.classList.add("cell");
-            cellPrice.textContent = attributes["kk_l"]; // Ganti YOUR_PRICE_FIELD dengan nama field yang sesuai
-            row.appendChild(cellPrice);
+            var cellkk_l = document.createElement("td");
+            cellkk_l.classList.add("cell");
+            cellkk_l.textContent = attributes["kk_l"]; // Ganti YOUR_PRICE_FIELD dengan nama field yang sesuai
+            row.appendChild(cellkk_l);
 
-            var cellQuantity = document.createElement("td");
-            cellQuantity.classList.add("cell");
-            cellQuantity.textContent = attributes["YOUR_QUANTITY_FIELD"]; // Ganti YOUR_QUANTITY_FIELD dengan nama field yang sesuai
-            row.appendChild(cellQuantity);
+            var cellkk_p = document.createElement("td");
+            cellkk_p.classList.add("cell");
+            cellkk_p.textContent = attributes["kk_p"]; // Ganti YOUR_QUANTITY_FIELD dengan nama field yang sesuai
+            row.appendChild(cellkk_p);
+
+            var cellkk_lp = document.createElement("td");
+            cellkk_lp.classList.add("cell");
+            cellkk_lp.textContent = attributes["kk_lp"]; // Ganti YOUR_QUANTITY_FIELD dengan nama field yang sesuai
+            row.appendChild(cellkk_lp);
 
             tableBody.appendChild(row);
           });
-        });
+        }
+
+        function setupPagination() {
+          var pagination = document.getElementById("pagination");
+          var pageCount = Math.ceil(features.length / rowsPerPage);
+
+          for (var i = 1; i <= pageCount; i++) {
+            var pageItem = document.createElement("li");
+            pageItem.classList.add("page-item");
+            if (i === currentPage) {
+              pageItem.classList.add("active");
+            }
+            var pageLink = document.createElement("a");
+            pageLink.classList.add("page-link");
+            pageLink.href = "#";
+            pageLink.textContent = i;
+            pageLink.onclick = (function (page) {
+              return function () {
+                currentPage = page;
+                displayTable(page);
+                updatePagination();
+              };
+            })(i);
+            pageItem.appendChild(pageLink);
+            pagination.insertBefore(pageItem, document.getElementById("nextPage"));
+          }
+        }
+
+        function updatePagination() {
+          var pageItems = document.querySelectorAll(".pagination .page-item");
+          pageItems.forEach(function (item) {
+            item.classList.remove("active");
+          });
+          pageItems[currentPage].classList.add("active");
+
+          document.getElementById("prevPage").classList.toggle("disabled", currentPage === 1);
+          document.getElementById("nextPage").classList.toggle("disabled", currentPage === pageItems.length - 2);
+        }
+
+        document.getElementById("prevPage").onclick = function () {
+          if (currentPage > 1) {
+            currentPage--;
+            displayTable(currentPage);
+            updatePagination();
+          }
+        };
+
+        document.getElementById("nextPage").onclick = function () {
+          var pageCount = Math.ceil(features.length / rowsPerPage);
+          if (currentPage < pageCount) {
+            currentPage++;
+            displayTable(currentPage);
+            updatePagination();
+          }
+        };
+
+        window.sortTable = function (key) {
+          if (sortOrder.key === key) {
+            sortOrder.ascending = !sortOrder.ascending;
+          } else {
+            sortOrder.key = key;
+            sortOrder.ascending = true;
+          }
+          features.sort(function (a, b) {
+            var aValue = a.attributes[key];
+            var bValue = b.attributes[key];
+            if (aValue < bValue) return sortOrder.ascending ? -1 : 1;
+            if (aValue > bValue) return sortOrder.ascending ? 1 : -1;
+            return 0;
+          });
+          displayTable(currentPage);
+        };
       });
     </script>
 
