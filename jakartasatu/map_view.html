@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Web Map</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.29/"></script>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 500px;
+        width: 100%;
+      }
+      .popup-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .popup-table th,
+      .popup-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      .popup-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+      }
+      .attachment-preview {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      .attachment-preview li {
+        margin: 5px 0;
+      }
+      .esri-ui-top-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .esri-ui-top-right .esri-component {
+        margin: 0 auto;
+      }
+    </style>
+    <body>
+      <!-- Body Peta -->
+      <div id="viewDiv"></div>
+
+      <!-- function js -->
+      <script>
+        require(["esri/Map", "esri/views/MapView", "esri/layers/FeatureLayer", "esri/widgets/Editor", "esri/core/reactiveUtils", "esri/widgets/Expand", "esri/widgets/Locate", "esri/widgets/Search", "esri/widgets/Fullscreen"], function (
+          Map,
+          MapView,
+          FeatureLayer,
+          Editor,
+          reactiveUtils,
+          Expand,
+          Locate,
+          Search,
+          Fullscreen
+        ) {
+          // Basemap
+          const map = new Map({
+            basemap: "topo-vector",
+          });
+
+          // Map View
+          const view = new MapView({
+            map: map,
+            center: [106.827464, -6.175371], // Longitude, latitude
+            zoom: 12,
+            container: "viewDiv",
+          });
+
+          const editThisAction = {
+            title: "Edit",
+            id: "edit-this",
+            className: "esri-icon-edit",
+          };
+
+          // Feature Layer
+          const layer = new FeatureLayer({
+            url: "https://tataruang.jakarta.go.id/server/rest/services/Hosted/Kependudukan_Jakpus/FeatureServer/0",
+            outFields: ["*"],
+            // editingEnabled: true,
+            popupTemplate: {
+              title: "POP UP",
+              content: getPopupContent,
+              // actions: [editThisAction]
+            },
+          });
+          map.add(layer);
+
+          // Pop Up with  Attachments
+          function getPopupContent(feature) {
+            const attributes = feature.graphic.attributes;
+            let content = "<table class='popup-table'>";
+
+            content += "<b>Attributes:</b>";
+            content += `<tr><td>SKPD</td><td>${attributes.skpd}</td></tr>`;
+            content += `<tr><td>Kelurahan</td><td>${attributes.wadmkd}</td></tr>`;
+            content += `<tr><td>KK Laki-Laki</td><td>${attributes.kk_l}</td></tr>`;
+            content += `<tr><td>KK Perempuan</td><td>${attributes.kk_p}</td></tr>`;
+            content += `<tr><td>Jumlah KK Laki-Laki & Perempuan</td><td>${attributes.kk_lp}</td></tr>`;
+            content += "</table>";
+
+            return feature.graphic.layer
+              .queryAttachments({ objectIds: [attributes[feature.graphic.layer.objectIdField]] })
+              .then(function (attachmentInfos) {
+                if (attachmentInfos && attachmentInfos[attributes[feature.graphic.layer.objectIdField]].length > 0) {
+                  content += "<br><b>Attachments:</b><ul class='attachment-preview'>";
+                  var attachments = attachmentInfos[attributes[feature.graphic.layer.objectIdField]];
+                  attachments.forEach(function (attachment) {
+                    content += `<li><a href="${attachment.url}" target="_blank">${attachment.name}</a></li>`;
+                  });
+                  content += "</ul>";
+                }
+                return content;
+              })
+              .catch(function (error) {
+                console.error("Error fetching attachments: ", error);
+                return content + "<b>No Attachments</b>";
+              });
+          }
+
+          // Editor
+          const editor = new Editor({
+            view: view,
+            layerInfos: [
+              {
+                layer: layer,
+                formTemplate: {
+                  elements: [
+                    {
+                      type: "field",
+                      fieldName: "wadmkd",
+                      label: "Kelurahan",
+                      // defaultValue: "cideng", // Set default value here
+                    },
+                    {
+                      type: "field",
+                      fieldName: "kk_l",
+                      label: "KK Laki-Laki",
+                    },
+                    {
+                      type: "field",
+                      fieldName: "kk_p",
+                      label: "KK Perempuan",
+                    },
+                    {
+                      type: "field",
+                      fieldName: "kk_lp",
+                      label: "KK Laki-Laki & Perempuan",
+                    },
+                    {
+                      type: "field",
+                      fieldName: "skpd",
+                      label: "SKPD",
+                      editable: false, // Set editable to false if you want it read-only
+                      // name: BPAD,
+                    },
+                  ],
+                },
+              },
+            ],
+          });
+
+          // Buat instance Fullscreen widget
+          var fullscreen = new Fullscreen({
+            view: view,
+          });
+
+          // Tambahkan Fullscreen widget ke view
+          view.ui.add(fullscreen, "top-left");
+
+          // Widget Locate
+          const locatebtn = new Locate({
+            view: view,
+          });
+
+          view.ui.add(locatebtn, {
+            position: "top-left",
+          });
+
+          // Widget Editor
+          const expandWidget = new Expand({
+            view: view,
+            content: editor,
+            expandTooltip: "Toggle Editor", // optional, text that shows in the tooltip
+            expanded: false, // Widget tidak aktif saat dimuat
+          });
+
+          view.ui.add(expandWidget, "top-left");
+
+          // Widget Search
+          const searchWidget = new Search({
+            view: view,
+          });
+
+          // Add the search widget to the top right corner of the view
+          view.ui.add(searchWidget, {
+            position: "top-right",
+            // index: 0
+          });
+        });
+      </script>
+    </body>
+  </head>
+</html>
